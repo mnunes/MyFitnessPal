@@ -53,6 +53,8 @@ g2 <- ggplot(data=dados, aes(x=GrupoMes, y=Weight, group=GrupoMes, fill=as.facto
   guides(fill=FALSE) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+g2
+
 pdf("grafico02.pdf")
 g2
 dev.off()
