@@ -25,7 +25,7 @@ dados$GrupoMes       <- ymd(paste(dados$Year, dados$Month, "01", sep="-"))
 
 # grafico
 
-ggplot(data=dados, aes(x=Date)) + 
+g1 <- ggplot(data=dados, aes(x=Date)) + 
   labs(x="Data", y="Peso (kg)") + 
   geom_line(aes(y=Weight, colour="Peso Real")) + 
   geom_line(aes(y=rollmean(Weight, 7, fill=NA), , colour="MM 30 Dias")) +
