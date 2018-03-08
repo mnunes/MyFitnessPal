@@ -28,8 +28,8 @@ dados$GrupoMes       <- ymd(paste(dados$Year, dados$Month, "01", sep="-"))
 g1 <- ggplot(data=dados, aes(x=Date)) + 
   labs(x="Data", y="Peso (kg)") + 
   geom_line(aes(y=Weight, colour="Peso Real")) + 
-  geom_line(aes(y=rollmean(Weight, 7, fill=NA), , colour="MM 30 Dias")) +
-  geom_line(aes(y=rollmean(Weight, 30, fill=NA), , colour="MM 90 Dias")) +
+  geom_line(aes(y=rollmean(Weight, 30, fill=NA), , colour="MM 30 Dias")) +
+  geom_line(aes(y=rollmean(Weight, 90, fill=NA), , colour="MM 90 Dias")) +
   scale_colour_manual("", values = wes_palette("Zissou")[c(3, 5, 1)]) + 
   scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) + 
   scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="2 month")) +
