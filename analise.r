@@ -25,13 +25,13 @@ dados$GrupoMes       <- ymd(paste(dados$Year, dados$Month, "01", sep="-"))
 
 # grafico
 
-g1 <- ggplot(data=dados, aes(x=Date)) + 
-  labs(x="Data", y="Peso (kg)") + 
-  geom_line(aes(y=Weight, colour="Peso Real")) + 
-  geom_line(aes(y=rollmean(Weight, 30, fill=NA), , colour="MM 30 Dias")) +
-  geom_line(aes(y=rollmean(Weight, 90, fill=NA), , colour="MM 90 Dias")) +
-  scale_colour_manual("", values = wes_palette("Zissou")[c(3, 5, 1)]) + 
-  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) + 
+g1 <- ggplot(data=dados, aes(x=Date)) +
+  labs(x="Data", y="Peso (kg)") +
+  geom_line(aes(y=Weight, colour="Peso Real")) +
+  geom_line(aes(y=c(rep(NA, 29), rollmean(Weight, 30)), colour="MM 30 Dias")) +
+  geom_line(aes(y=c(rep(NA, 89), rollmean(Weight, 90)), colour="MM 90 Dias")) +
+  scale_colour_manual("", values = wes_palette("Zissou1")[c(3, 5, 1)]) +
+  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) +
   scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="2 month")) +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
@@ -45,10 +45,10 @@ dev.off()
 # analise a cada mes
 
 g2 <- ggplot(data=dados, aes(x=GrupoMes, y=Weight, group=GrupoMes, fill=as.factor(GrupoMes))) +
-  labs(x="Meses", y="Peso (kg)") + 
-  geom_boxplot() + 
-  scale_fill_manual("Meses", values=rep(wes_palette(5, name="Zissou"), 20)[1:length(unique(dados$GrupoMes))]) +
-  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) + 
+  labs(x="Meses", y="Peso (kg)") +
+  geom_boxplot() +
+  scale_fill_manual("Meses", values=rep(wes_palette(5, name="Zissou1"), 20)[1:length(unique(dados$GrupoMes))]) +
+  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) +
   scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="1 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="1 month")) +
   theme_bw() +
   guides(fill=FALSE) +
@@ -63,10 +63,10 @@ dev.off()
 # analise a cada dia da semana
 
 ggplot(data=dados, aes(x=GrupoDiaSemana, y=Weight, group=GrupoDiaSemana, fill=GrupoDiaSemana)) +
-  labs(x="Dia da Semana", y="Peso (kg)") + 
-  geom_boxplot() + 
+  labs(x="Dia da Semana", y="Peso (kg)") +
+  geom_boxplot() +
   scale_fill_manual("Dia da Semana", values=rep(wes_palette(3, name="Royal1"), 20)[1:length(unique(dados$GrupoDiaSemana))]) +
-  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) + 
+  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) +
   guides(fill=FALSE) +
   theme_bw()
 
@@ -95,7 +95,7 @@ dados %>%
   head(n=20) %>%
   group_by(Year) %>%
   count()
-  
+
 dados %>%
   arrange(Weight) %>%
   head(n=50) %>%
