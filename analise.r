@@ -31,7 +31,7 @@ g1 <- ggplot(data=dados, aes(x=Date)) +
   geom_line(aes(y=c(rep(NA, 29), rollmean(Weight, 30)), colour="MM 30 Dias")) +
   geom_line(aes(y=c(rep(NA, 89), rollmean(Weight, 90)), colour="MM 90 Dias")) +
   scale_colour_manual("", values = wes_palette("Zissou1")[c(3, 5, 1)]) +
-  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) +
+  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), minor_breaks=NULL, limits=c(min(dados$Weight), max(dados$Weight))) +
   scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="2 month")) +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
