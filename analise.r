@@ -35,7 +35,17 @@ g1 <- ggplot(data=dados, aes(x=Date)) +
   scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), minor_breaks=NULL, limits=c(min(dados$Weight), max(dados$Weight))) +
   scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="2 month")) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  annotate("text", ymd("2016-06-25"), 80, label="Buenos Aires", hjust=0.25) +
+  geom_segment(aes(x = ymd("2016-06-25"), y = 73, xend = ymd("2016-06-25"), yend = 79.5)) +
+  annotate("text", ymd("2017-01-12"), 78, label="Porto Alegre", hjust=0.25) +
+  geom_segment(aes(x = ymd("2017-01-12"), y = 77.5, xend = ymd("2017-01-12"), yend = 74)) +
+  annotate("text", ymd("2017-08-01"), 76, label="Comecei a correr na rua", hjust=0.25) +
+  geom_segment(aes(x = ymd("2017-08-01"), y = 72.5, xend = ymd("2017-08-01"), yend = 75.5)) +
+  annotate("text", ymd("2017-11-11"), 74, label="Parei de correr na rua", hjust=0.25) +
+  geom_segment(aes(x = ymd("2017-11-11"), y = 70.5, xend = ymd("2017-11-11"), yend = 73.5)) +
+  annotate("text", ymd("2017-12-26"), 70, label="Espanha", hjust=0.25) +
+  geom_segment(aes(x = ymd("2017-12-26"), y = 70.5, xend = ymd("2017-12-26"), yend = 71.5))
 
 g1
 
