@@ -1,5 +1,4 @@
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
 library(forecast)
 library(lubridate)
 library(wesanderson)
