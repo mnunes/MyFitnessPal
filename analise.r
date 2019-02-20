@@ -7,7 +7,7 @@ library(zoo)
 
 # leitura de dados
 
-dados <- as_data_frame(read.table(file="data.csv", sep=",", header=TRUE))
+dados <- as_tibble(read.table(file="data.csv", sep=",", header=TRUE))
 dados <- dados %>%
   select(-Calories)
 
