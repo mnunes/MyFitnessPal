@@ -34,7 +34,7 @@ g1 <- ggplot(data=dados, aes(x=Date)) +
   scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), minor_breaks=NULL, limits=c(min(dados$Weight), max(dados$Weight))) +
   scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="2 month")) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   annotate("text", ymd("2016-06-25"), 80, label="Buenos Aires", hjust=0.25) +
   geom_segment(aes(x = ymd("2016-06-25"), y = 73, xend = ymd("2016-06-25"), yend = 79.5)) +
   annotate("text", ymd("2017-01-12"), 78, label="Porto Alegre", hjust=0.25) +
@@ -59,10 +59,10 @@ g2 <- ggplot(data=dados, aes(x=GrupoMes, y=Weight, group=GrupoMes, fill=as.facto
   geom_boxplot() +
   scale_fill_manual("Meses", values=rep(wes_palette(5, name="Zissou1"), 20)[1:length(unique(dados$GrupoMes))]) +
   scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) +
-  scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="1 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="1 month")) +
+  scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="1 month")) +
   theme_bw() +
   guides(fill=FALSE) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
 g2
 
