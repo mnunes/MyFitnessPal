@@ -48,7 +48,7 @@ g1 <- ggplot(data=dados, aes(x=Date)) +
 
 g1
 
-pdf("grafico01.pdf", width = 800, height = 600)
+pdf("grafico01.pdf", width = 12, height = 9)
 g1
 dev.off()
 
@@ -66,7 +66,7 @@ g2 <- ggplot(data=dados, aes(x=GrupoMes, y=Weight, group=GrupoMes, fill=as.facto
 
 g2
 
-pdf("grafico02.pdf", width = 800, height = 600)
+pdf("grafico02.pdf", width = 12, height = 9)
 g2
 dev.off()
 
