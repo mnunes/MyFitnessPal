@@ -44,7 +44,9 @@ g1 <- ggplot(data=dados, aes(x=Date)) +
   annotate("text", ymd("2017-11-11"), 74, label="Parei de correr na rua", hjust=0.25) +
   geom_segment(aes(x = ymd("2017-11-11"), y = 70.5, xend = ymd("2017-11-11"), yend = 73.5)) +
   annotate("text", ymd("2017-12-26"), 70, label="Espanha", hjust=0.25) +
-  geom_segment(aes(x = ymd("2017-12-26"), y = 70.5, xend = ymd("2017-12-26"), yend = 71.5))
+  geom_segment(aes(x = ymd("2017-12-26"), y = 70.5, xend = ymd("2017-12-26"), yend = 71.5)) +
+  annotate("text", ymd("2019-02-01"), 76.5, label="Malásia", hjust=0) +
+  geom_segment(aes(x = ymd("2019-08-22"), y = 75, xend = ymd("2019-08-22"), yend = 76.5))
 
 g1
 
