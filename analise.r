@@ -82,6 +82,24 @@ ggplot(data=dados, aes(x=GrupoDiaSemana, y=Weight, group=GrupoDiaSemana, fill=Gr
   guides(fill=FALSE) +
   theme_bw()
 
+# analise a cada semana
+
+g3 <- ggplot(data=dados, aes(x=GrupoMes, y=Weight, group=GrupoMes, fill=as.factor(GrupoMes))) +
+  labs(x="Meses", y="Peso (kg)") +
+  geom_boxplot() +
+  scale_fill_manual("Meses", values=rep(wes_palette(5, name="Zissou1"), 20)[1:length(unique(dados$GrupoMes))]) +
+  scale_y_continuous(breaks = round(seq(floor(min(dados$Weight)), ceiling(max(dados$Weight)), by=1), 1), limits=c(min(dados$Weight), max(dados$Weight))) +
+  scale_x_date(breaks=seq(min(dados$Date), max(dados$Date), by="2 month"), date_labels="%b/%Y", minor_breaks=seq(min(dados$Date), max(dados$Date), by="1 month")) +
+  theme_bw() +
+  guides(fill=FALSE) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+g3
+
+pdf("grafico02.pdf", width = 12, height = 9)
+g3
+dev.off()
+
 # descritivas
 
 dados %>%
